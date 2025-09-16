@@ -1,0 +1,24 @@
+.footer {
+    padding: 120px 20px;
+
+    &__wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__date {
+        color: var(--text-color);
+        font-size: 15px;
+    }
+
+    &__info {
+        color: var(--text-color);
+        font-size: 15px;
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    }
+}
