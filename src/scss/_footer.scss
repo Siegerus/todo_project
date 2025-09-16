@@ -22,3 +22,26 @@
         }
     }
 }
+
+@media (max-width: 576px) {
+    .footer {
+        padding: 80px 20px;
+
+        &__date {
+            font-size: 17px;
+        }
+
+        &__info {
+            font-size: 14px;
+        }
+    }
+}
+
+@media (max-width: 375px)  {
+    .footer {
+        &__wrapper {
+            flex-direction: column;
+        }
+        
+    }
+}

@@ -2,6 +2,7 @@ window.addEventListener('DOMContentLoaded',() => {
 
     setList();
     setDate();
+	setTimer();
 
 });
 
@@ -197,7 +198,7 @@ function setList() {
         e.preventDefault();
 
         	//...//
-			
+
     }
 
     function setBoxHandle(e) {
@@ -248,4 +249,37 @@ function setDate() {
         }
     }
     dateBox.innerHTML = `${getDate(date).day} . ${getDate(date).month} . ${getDate(date).year}`;
+}
+
+
+function setTimer() {
+	function getTime() {
+		let date = new Date();
+		let hours = date.getHours() < 10 ? '0' + date.getHours()  : date.getHours(),
+			minutes = date.getMinutes() < 10 ? '0' + date.getMinutes()  : date.getMinutes(),
+			seconds = date.getSeconds() < 10 ? '0' + date.getSeconds()  : date.getSeconds();
+			
+			return {
+				hours,
+				minutes,
+				seconds,
+			}
+	}
+	function setValue() {
+		let timer = document.querySelector('.timer'),
+			hoursBox = timer.querySelector('.timer__hours'),
+			minutesBox = timer.querySelector('.timer__minutes'),
+			secondsBox = timer.querySelector('.timer__seconds');
+	
+		function setTime() {
+			hoursBox.innerHTML = getTime().hours;
+			minutesBox.innerHTML = getTime().minutes;
+			secondsBox.innerHTML = getTime().seconds;
+		}
+	
+		setTime();
+	
+		let interval = setInterval(setTime, 1000);
+	}
+	setValue();
 }
