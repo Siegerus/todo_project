@@ -1,13 +1,13 @@
 window.addEventListener('DOMContentLoaded',() => {
 
-    setNote();
+    setList();
     setDate();
 
 });
 
 
 
-function setNote() {
+function setList() {
     let form = document.forms[0];
     let ul = document.querySelector("ul");
     let setBox = document.querySelector(".todo__set");
@@ -20,7 +20,7 @@ function setNote() {
     function windowLoad() {
         window.addEventListener('load', (e) => { 
             for(let i = 0; i < localStorage.length; i++) {
-                onSubmit(e, localStorage.getItem(i));
+				setNotes(localStorage.getItem(i));
             }
         });
     }
@@ -173,12 +173,10 @@ function setNote() {
         };
     }
 
-    function onSubmit(e, value) {
-        e.preventDefault();
-        
-        if(value) createNoteElement(value);
-        
-        let li = document.querySelectorAll(".list__item");
+	function setNotes(value) {
+		if(value) createNoteElement(value);
+
+		let li = document.querySelectorAll(".list__item");
         let liText = document.querySelectorAll(".list__text"); 
 
         li.forEach((item, i) => {
@@ -193,6 +191,13 @@ function setNote() {
                 replaceItem(span, i);
             }
         });
+	}
+
+    function onSubmit(e) {
+        e.preventDefault();
+
+        	//...//
+			
     }
 
     function setBoxHandle(e) {
@@ -220,9 +225,13 @@ function setNote() {
         };
     }
 
-    form.addEventListener("submit", (e) => onSubmit(e, form.note.value));
+    form.addEventListener("submit", (e) => {
+		onSubmit(e);
+		setNotes(form.note.value);
+	});
     setBox.addEventListener("click", setBoxHandle);
 }
+
 
 function setDate() {
     let date = new Date();
