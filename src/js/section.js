@@ -1,9 +1,8 @@
 window.addEventListener('DOMContentLoaded',() => {
-
+	setTimer();
+	setWhether();
     setList();
     setDate();
-	setTimer();
-
 });
 
 
@@ -283,3 +282,51 @@ function setTimer() {
 	}
 	setValue();
 }
+
+
+function setWhether() {
+	const API_KEY = '3313eade200c1be66cd128f80caabf6e'; 
+	let whetherBox = document.querySelector('.whether');
+	let isLoaded = false;
+
+	function setData(locationData, imgSrc, tempData) {
+		whetherBox.firstElementChild.firstElementChild.innerHTML = locationData;
+		whetherBox.firstElementChild.firstElementChild.nextElementSibling.src = imgSrc;
+		whetherBox.firstElementChild.nextElementSibling.innerHTML = tempData;
+
+	}
+	if(!isLoaded) setData('Loading...', '/img/loading-spinner.gif','Loading...');
+
+	function getData() {
+		if(!navigator.geolocation) return;
+		
+		navigator.geolocation.getCurrentPosition((position) => {
+			
+			let {latitude, longitude} = position.coords;
+			let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
+
+			async function getData(url) {
+				let response = await fetch(url);
+				let json = await response.json();
+				console.log(response)
+				if(response.ok)  return json;
+				else {
+					throw new Error('Response error! ' + response.status)
+				}
+			}
+		
+			getData(url).then((result) => {
+				isLoaded = true;
+				let cells = Math.round(result.main.temp - 273.15) + " °C"
+				if(isLoaded) setData(result.name, `https://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png`, cells);
+			}).catch((error) => {
+				setData('Error', '', 'Error');
+				console.error(error.message);
+			});
+		});
+	}
+	getData();
+}
+
+
+

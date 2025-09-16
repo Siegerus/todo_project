@@ -1,5 +1,11 @@
 .header {
     padding-top: 30px;
+
+    &__wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 }
 
 .timer {
@@ -9,12 +15,22 @@
     font-size: 20px;
     color: var(--text-color);
 }
+.whether {
+    color: var(--text-color);
 
-@media (max-width: 576px) {
-    .header {
-        
+    &__icon {
+        display: block;
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
     }
 
+    &__temp, &__location {
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
     .timer {
         justify-content: center;
         gap: 11px;

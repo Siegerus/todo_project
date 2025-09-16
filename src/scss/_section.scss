@@ -54,7 +54,7 @@ body {
 
 .form__input {
     display: block;
-    min-width: 266px;
+    /* min-width: 266px; */
     padding: 5px 8px 5px 7px;
     border: 1px solid lightgray;
     border-radius: 7px;
@@ -127,6 +127,7 @@ body {
     color: #fff;
 }
 
+
 .form__button:active {
     background-color: rgb(190, 215, 252);
 }
@@ -154,7 +155,7 @@ body {
 }
 
 .todo__list {
-    max-width: 90%;
+    max-width: 95%;
     margin: 0 auto;
     margin-top: 21px;
 }
@@ -313,7 +314,7 @@ body {
     }
 
     .todo__list  {
-        max-width: 93%;
+        max-width: 97%;
     }
 
     .list__item span.check {
